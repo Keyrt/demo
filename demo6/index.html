@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.6/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model.trim="inputValue" @keyup.enter="addTast">
+            <button @click="addTast">提交</button>
+            <span>{{ propmt }}</span>
+            <ul>
+                <li v-for="(item,index) in todoList" :key="item">
+                    {{ item }} 
+                    <button @click="completeTast(index)">X</button>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4>已完成任务</h4>
+            <ul>
+                <li v-for="item in completeList" :key="item">{{ item }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                inputValue: '',
+                propmt: '',
+                todoList: [],
+                completeList: []
+            },
+            methods: {
+                addTast (e) {
+                    
+                    if( this.inputValue =='') {
+                        this.propmt = '不能输入空任务';
+                    }else if( this.todoList.includes(this.inputValue)) {
+                        this.propmt = '不能输入相同的任务';
+                    }else {
+                        this.todoList.push( this.inputValue );
+                        this.inputValue = '';
+                    }
+                    
+                },
+                completeTast (index) {
+                    const task = this.todoList.splice(index, 1);
+                    console.log(task);
+                    this.completeList.push(...task)
+                }
+            },
+            // watch: {
+            //     inputValue () {
+            //         this.todoList.push( this.inputValue );
+            //     }
+            // }
+        })
+    </script>
+</body>
+</html>

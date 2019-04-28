@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./jquery-1.8.3.min.js"></script>
+    <script>
+        $.ajax({
+            type:'GET',
+            url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=nba&cb=jQuery110209650004061565076_1546414041340&_=1546414041351',
+            dataType:'jsonp',
+            success:function(data){
+                console.log(data);
+            },
+            error:function(){
+                console.log('error');
+            }
+        })
+
+        function ajaxData(value) {
+            $.ajax({
+                
+            })
+        }
+    </script>
+    <!-- 数组出重 -->
+    <script>
+        function unique1(arr) {
+            var newArr = [];
+            var len = arr.length;
+            for (var i = 0; i < len; i++) {
+                if(newArr.indexOf(arr[i]) == -1 ){
+                    newArr.push(arr[i])
+                }
+            }
+            return newArr;
+        }
+
+        function unique2(arr){
+            var obj = {},
+                newArr = [],
+                len = arr.length;
+            for(var i = 0; i < len; i++){
+                if(!obj[arr[i]]){
+                    obj[arr[i]] = 1;
+                    newArr.push(arr[i]);
+                }
+            }
+            return newArr;
+        }
+    </script>
+</body>
+</html>
